@@ -1,6 +1,6 @@
 import type { ApiDeal, Deal, ApiResponse } from "@/types/deal"
 
-const API_BASE_URL = "https://spotmijnvlucht-api-77895017095-europe-west1.a.run.app"
+export const API_BASE_URL = "https://spotmijnvlucht-api-77895017095-europe-west1.a.run.app"
 
 // Transform API data to match component expectations
 function transformApiDeal(apiDeal: ApiDeal): Deal {
@@ -68,7 +68,7 @@ export async function fetchDeals(): Promise<Deal[]> {
 }
 
 // Fallback data for development/testing
-function getFallbackDeals(): Deal[] {
+export function getFallbackDeals(): Deal[] {
   return [
     {
       id: 1,

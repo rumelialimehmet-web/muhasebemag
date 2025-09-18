@@ -1,5 +1,9 @@
-import { createClient } from "./supabase/server"
-import { supabase } from "./supabase/client"
+import {
+  createClient,
+  isSupabaseConfigured as isSupabaseServerConfigured,
+  SUPABASE_MISSING_MESSAGE,
+} from "./supabase/server"
+import { supabase, isSupabaseConfigured as isSupabaseClientConfigured } from "./supabase/client"
 
 export interface FlightDeal {
   id: string
@@ -56,6 +60,11 @@ export interface ClickTracking {
 
 // Server-side database functions
 export async function getFlightDeals(category?: string, limit?: number) {
+  if (!isSupabaseServerConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Ophalen van deals wordt overgeslagen.`)
+    return []
+  }
+
   const client = createClient()
 
   let query = client.from("flight_deals").select("*").order("created_at", { ascending: false })
@@ -79,6 +88,11 @@ export async function getFlightDeals(category?: string, limit?: number) {
 }
 
 export async function getDealOfTheDay() {
+  if (!isSupabaseServerConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Deal van de dag niet beschikbaar.`)
+    return null
+  }
+
   const client = createClient()
 
   const { data, error } = await client.from("flight_deals").select("*").eq("is_deal_of_day", true).single()
@@ -92,6 +106,11 @@ export async function getDealOfTheDay() {
 }
 
 export async function trackClick(dealId: string, sessionId: string, metadata: any = {}) {
+  if (!isSupabaseServerConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Kliktracking wordt overgeslagen.`)
+    return
+  }
+
   const client = createClient()
 
   const { error } = await client.from("click_tracking").insert({
@@ -106,6 +125,23 @@ export async function trackClick(dealId: string, sessionId: string, metadata: an
 }
 
 export async function subscribeToNewsletter(email: string, preferences: any = {}) {
+  if (!isSupabaseServerConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Nieuwsbriefinschrijving wordt niet persistent opgeslagen.`)
+    return {
+      success: true,
+      data: [
+        {
+          id: "simulated",
+          email,
+          subscription_type: "newsletter",
+          is_active: true,
+          preferences,
+          subscribed_at: new Date().toISOString(),
+        } as EmailSubscription,
+      ],
+    }
+  }
+
   const client = createClient()
 
   const { data, error } = await client
@@ -128,6 +164,23 @@ export async function subscribeToNewsletter(email: string, preferences: any = {}
 
 // Client-side database functions
 export async function subscribeToNewsletterClient(email: string, preferences: any = {}) {
+  if (!isSupabaseClientConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Nieuwsbriefinschrijving (client) wordt niet persistent opgeslagen.`)
+    return {
+      success: true,
+      data: [
+        {
+          id: "simulated",
+          email,
+          subscription_type: "newsletter",
+          is_active: true,
+          preferences,
+          subscribed_at: new Date().toISOString(),
+        } as EmailSubscription,
+      ],
+    }
+  }
+
   const { data, error } = await supabase
     .from("email_subscriptions")
     .upsert({
@@ -147,6 +200,23 @@ export async function subscribeToNewsletterClient(email: string, preferences: an
 }
 
 export async function createPriceAlert(email: string, destination: string, maxPrice: number) {
+  if (!isSupabaseClientConfigured) {
+    console.warn(`${SUPABASE_MISSING_MESSAGE} Prijsalerts worden niet opgeslagen.`)
+    return {
+      success: true,
+      data: [
+        {
+          id: "simulated",
+          email,
+          destination,
+          max_price: maxPrice,
+          is_active: true,
+          created_at: new Date().toISOString(),
+        },
+      ],
+    }
+  }
+
   const { data, error } = await supabase
     .from("price_alerts")
     .insert({

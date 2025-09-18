@@ -1,6 +1,14 @@
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resendApiKey = process.env.RESEND_API_KEY
+const resend = resendApiKey ? new Resend(resendApiKey) : null
+const RESEND_MISSING_MESSAGE =
+  "Resend API key ontbreekt. Stel RESEND_API_KEY in om e-mails te kunnen versturen."
+
+const handleMissingApiKey = () => {
+  console.warn(RESEND_MISSING_MESSAGE)
+  return { success: false, error: RESEND_MISSING_MESSAGE }
+}
 
 export interface EmailTemplate {
   subject: string
@@ -169,6 +177,10 @@ export const emailTemplates = {
 export async function sendWelcomeEmail(recipient: EmailRecipient) {
   const template = emailTemplates.welcome(recipient.name || "")
 
+  if (!resend) {
+    return handleMissingApiKey()
+  }
+
   try {
     const { data, error } = await resend.emails.send({
       from: "SpotMijnVlucht <deals@spotmijnvlucht.nl>",
@@ -192,6 +204,10 @@ export async function sendWelcomeEmail(recipient: EmailRecipient) {
 
 export async function sendWeeklyDealsEmail(recipients: EmailRecipient[], deals: any[]) {
   const template = emailTemplates.weeklyDeals(deals)
+
+  if (!resend) {
+    return handleMissingApiKey()
+  }
 
   try {
     const emailPromises = recipients.map((recipient) =>
@@ -223,6 +239,10 @@ export async function sendPriceAlert(
 ) {
   const template = emailTemplates.priceAlert(destination, price, originalPrice)
 
+  if (!resend) {
+    return handleMissingApiKey()
+  }
+
   try {
     const { data, error } = await resend.emails.send({
       from: "SpotMijnVlucht <alerts@spotmijnvlucht.nl>",
@@ -246,6 +266,10 @@ export async function sendPriceAlert(
 
 export async function sendAbandonedBookingEmail(recipient: EmailRecipient, destination: string, price: number) {
   const template = emailTemplates.abandonedBooking(destination, price)
+
+  if (!resend) {
+    return handleMissingApiKey()
+  }
 
   try {
     const { data, error } = await resend.emails.send({

@@ -35,10 +35,10 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
-    # OpenAI
-    OPENAI_API_KEY: str
-    OPENAI_MODEL: str = "gpt-4-vision-preview"
-    OPENAI_MAX_TOKENS: int = 4096
+    # Google Gemini AI
+    GEMINI_API_KEY: str
+    GEMINI_MODEL: str = "gemini-1.5-pro"
+    GEMINI_MAX_TOKENS: int = 8192
 
     # File Upload
     MAX_UPLOAD_SIZE: int = 52428800  # 50MB

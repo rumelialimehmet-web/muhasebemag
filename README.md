@@ -4,6 +4,25 @@
 
 > 30 saniyede Kurumlar Vergisi Beyannamesi analizi | 21 farklı finansal oran | %99+ doğruluk
 
+## ⚡ HIZLI BAŞLANGIÇ
+
+**10 dakikada tamamen online deploy!**
+
+```bash
+# 1. Gemini API Key alın (ÜCRETSİZ)
+https://ai.google.dev/
+
+# 2. Railway'de backend deploy
+https://railway.app/
+
+# 3. Vercel'de frontend deploy
+https://vercel.com/
+
+# Detaylar için: QUICK_START.md
+```
+
+**Maliyet:** ~$5/ay (veya tamamen ücretsiz tier'da) 💰
+
 ---
 
 ## 📋 Proje Özeti
@@ -34,10 +53,10 @@ Smart Lodge Budget, mali müşavirler ve muhasebe profesyonelleri için gelişti
 
 ### Backend
 - **Framework**: FastAPI (Python 3.11+)
-- **Database**: PostgreSQL 15+
-- **Cache**: Redis 7+
+- **Database**: Supabase PostgreSQL (Cloud)
+- **Cache**: Upstash Redis (Cloud)
 - **ORM**: SQLAlchemy 2.0 (Async)
-- **AI/ML**: OpenAI GPT-4 Vision, Tesseract OCR
+- **AI/ML**: Google Gemini 1.5 Pro (ÜCRETSİZ!), Tesseract OCR
 
 ### Frontend
 - **Framework**: Next.js 14 (App Router)
@@ -46,10 +65,12 @@ Smart Lodge Budget, mali müşavirler ve muhasebe profesyonelleri için gelişti
 - **Components**: Shadcn/ui
 - **Charts**: Recharts
 
-### DevOps
-- **Containerization**: Docker + Docker Compose
-- **CI/CD**: GitHub Actions
-- **Hosting**: Vercel (Frontend), Cloud Run (Backend)
+### Cloud & Deployment
+- **Frontend Hosting**: Vercel (Ücretsiz)
+- **Backend Hosting**: Railway ($5/ay)
+- **Database**: Supabase (Ücretsiz 500MB)
+- **Cache**: Upstash (Ücretsiz 10K req/day)
+- **AI**: Google Gemini (Ücretsiz 60 req/min)
 
 ---
 

@@ -9,9 +9,10 @@ sqlalchemy==2.0.23
 asyncpg==0.29.0
 alembic==1.13.0
 
-# Redis Cache
+# Redis Cache (Upstash compatible)
 redis==5.0.1
 hiredis==2.2.3
+upstash-redis==0.15.0
 
 # Authentication
 python-jose[cryptography]==3.3.0
@@ -27,8 +28,8 @@ Pillow==10.1.0
 # OCR
 pytesseract==0.3.10
 
-# OpenAI
-openai==1.3.7
+# Google Gemini AI
+google-generativeai==0.3.2
 
 # Excel Export
 openpyxl==3.1.2

@@ -6,22 +6,22 @@
 
 ## ⚡ HIZLI BAŞLANGIÇ
 
-**10 dakikada tamamen online deploy!**
+**5 dakikada %100 ÜCRETSİZ deploy!**
 
 ```bash
 # 1. Gemini API Key alın (ÜCRETSİZ)
 https://ai.google.dev/
 
-# 2. Railway'de backend deploy
-https://railway.app/
+# 2. Render.com'da backend deploy (ÜCRETSİZ + database dahil!)
+https://render.com/
 
-# 3. Vercel'de frontend deploy
+# 3. Vercel'de frontend deploy (ÜCRETSİZ)
 https://vercel.com/
 
-# Detaylar için: QUICK_START.md
+# Detaylar için: QUICK_START.md veya RENDER_DEPLOYMENT.md
 ```
 
-**Maliyet:** ~$5/ay (veya tamamen ücretsiz tier'da) 💰
+**Maliyet:** $0/ay - Tamamen ücretsiz! 💰
 
 ---
 
@@ -65,12 +65,14 @@ Smart Lodge Budget, mali müşavirler ve muhasebe profesyonelleri için gelişti
 - **Components**: Shadcn/ui
 - **Charts**: Recharts
 
-### Cloud & Deployment
+### Cloud & Deployment (%100 Ücretsiz!)
 - **Frontend Hosting**: Vercel (Ücretsiz)
-- **Backend Hosting**: Railway ($5/ay)
-- **Database**: Supabase (Ücretsiz 500MB)
-- **Cache**: Upstash (Ücretsiz 10K req/day)
+- **Backend Hosting**: Render.com (Ücretsiz + 750h/ay)
+- **Database**: Render PostgreSQL (Ücretsiz 1GB - dahil!)
+- **Cache**: Upstash Redis (Ücretsiz 10K req/day)
 - **AI**: Google Gemini (Ücretsiz 60 req/min)
+
+**TOPLAM MALİYET: $0/ay** 🎉
 
 ---
 

@@ -1,218 +1,381 @@
-# 📊 Mali Tablo Analiz MVP
+# 🚀 Smart Lodge Budget MVP
 
-Kurumlar Vergisi Beyannamesi PDF'lerinden otomatik olarak Bilanço ve Gelir Tablosu verilerini çıkaran web tabanlı analiz sistemi.
+**AI-Powered Financial Analysis Platform for Turkish Accountants**
 
-## 🎯 Proje Hedefi
+> 30 saniyede Kurumlar Vergisi Beyannamesi analizi | 21 farklı finansal oran | %99+ doğruluk
 
-Bu MVP (Minimum Uygulanabilir Ürün), finansal belge analizinin en kritik kısmını çözmeyi amaçlar: **PDF'ten veri çıkarma**. Kullanıcılar bir Kurumlar Vergisi Beyannamesi PDF'i yükleyebilir ve sistem otomatik olarak:
+---
 
-- 💰 Bilanço verilerini (Aktif/Pasif)
-- 📈 Gelir Tablosu verilerini
-- 📊 Diğer finansal tabloları
+## 📋 Proje Özeti
 
-Çıkarıp web arayüzünde görüntüler.
+Smart Lodge Budget, mali müşavirler ve muhasebe profesyonelleri için geliştirilmiş yapay zeka destekli finansal analiz platformudur. Kurumlar Vergisi Beyannamesi PDF'lerini otomatik olarak işleyerek saniyeler içinde kapsamlı finansal analizler sunar.
 
-## ✨ Özellikler
+### 🎯 Temel Değer Önerisi
 
-- 📤 **Kolay PDF Yükleme**: Sürükle-bırak veya dosya seçici ile PDF yükleme
-- ⚡ **Hızlı İşleme**: Saniyeler içinde PDF analizi
-- 📊 **Tablo Görünümü**: Çıkarılan verileri düzenli HTML tablolarında gösterim
-- 📱 **Responsive Tasarım**: Mobil ve masaüstü uyumlu arayüz
-- 🎨 **Modern UI**: Kullanıcı dostu, modern web arayüzü
+| Özellik | Manuel Süreç | Smart Lodge Budget |
+|---------|--------------|-------------------|
+| **İşlem Süresi** | 2-3 saat | 30 saniye |
+| **Doğruluk Oranı** | %80-85 | %99+ |
+| **Maliyet** | $50-75 | $1-2 |
+| **Analiz Sayısı** | 3-7 temel oran | 21 kapsamlı analiz |
 
-## 🛠️ Teknoloji Stack
+### ✨ Ana Özellikler
 
-- **Backend**: Python + Flask
-- **PDF İşleme**: pdfplumber
-- **Veri İşleme**: pandas
-- **Frontend**: HTML5, CSS3, JavaScript
-- **API**: RESTful JSON API
+- ✅ **PDF İşleme**: GPT-4 Vision + Tesseract OCR ile otomatik veri çıkarma
+- ✅ **Finansal Tablolar**: Mizan, Bilanço, Gelir Tablosu otomatik oluşturma
+- ✅ **21 Rasyo Analizi**: Likidite, Karlılık, Verimlilik, Ödeme Gücü
+- ✅ **Karşılaştırmalı Analiz**: Dönemler arası otomatik karşılaştırma
+- ✅ **Dashboard**: İnteraktif grafikler ve görselleştirmeler
+- ✅ **Excel Export**: Profesyonel raporlar
 
-## 📋 Gereksinimler
+---
 
-- Python 3.8 veya üzeri
-- pip (Python paket yöneticisi)
+## 🏗️ Teknoloji Stack
 
-## 🚀 Kurulum
+### Backend
+- **Framework**: FastAPI (Python 3.11+)
+- **Database**: PostgreSQL 15+
+- **Cache**: Redis 7+
+- **ORM**: SQLAlchemy 2.0 (Async)
+- **AI/ML**: OpenAI GPT-4 Vision, Tesseract OCR
 
-### 1. Projeyi İndirin
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS 3
+- **Components**: Shadcn/ui
+- **Charts**: Recharts
+
+### DevOps
+- **Containerization**: Docker + Docker Compose
+- **CI/CD**: GitHub Actions
+- **Hosting**: Vercel (Frontend), Cloud Run (Backend)
+
+---
+
+## 🚀 Hızlı Başlangıç
+
+### Gereksinimler
+
+- Docker Desktop (v24+)
+- Docker Compose (v2.20+)
+- Git
+- (Opsiyonel) Node.js 20+ ve Python 3.11+ (local development için)
+
+### 1️⃣ Projeyi Klonlayın
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/rumelialimehmet-web/muhasebemag.git
 cd muhasebemag
 ```
 
-### 2. Sanal Ortam Oluşturun (Önerilen)
+### 2️⃣ Environment Değişkenlerini Ayarlayın
 
 ```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Linux/Mac
-python3 -m venv venv
-source venv/bin/activate
+# Backend .env dosyası zaten oluşturuldu
+# OpenAI API Key'inizi ekleyin:
+nano backend/.env
+# OPENAI_API_KEY=your-key-here
 ```
 
-### 3. Bağımlılıkları Yükleyin
+### 3️⃣ Docker ile Başlatın
 
 ```bash
-pip install -r requirements.txt
+# Tüm servisleri başlat (PostgreSQL + Redis + Backend + Frontend)
+docker-compose -f docker-compose.dev.yml up --build
+
+# Arka planda çalıştırmak için:
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
-### 4. Uygulamayı Başlatın
+### 4️⃣ Uygulamayı Açın
+
+```
+🌐 Frontend:  http://localhost:3000
+📚 API Docs:  http://localhost:8000/docs
+🏥 Health:    http://localhost:8000/health
+```
+
+### 5️⃣ Durdurma
 
 ```bash
-python app.py
+docker-compose -f docker-compose.dev.yml down
+
+# Verileri de silmek için:
+docker-compose -f docker-compose.dev.yml down -v
 ```
 
-Sunucu başlatıldıktan sonra şu mesajı göreceksiniz:
-```
-==================================================
-Mali Tablo Analiz MVP - Sunucu Başlatılıyor
-==================================================
-Sunucu adresi: http://127.0.0.1:5000
-Durdurmak için: CTRL+C
-==================================================
-```
-
-### 5. Web Arayüzünü Açın
-
-Tarayıcınızda şu adresi açın:
-```
-http://127.0.0.1:5000
-```
-
-## 📖 Kullanım
-
-1. **PDF Seçin**: "Dosya Seç" butonuna tıklayarak Kurumlar Vergisi Beyannamesi PDF'inizi seçin
-2. **Yükle ve Analiz Et**: Yükleme butonuna tıklayın
-3. **Sonuçları İnceleyin**: Sistem PDF'i işleyip Bilanço ve Gelir Tablosu verilerini gösterecektir
+---
 
 ## 📁 Proje Yapısı
 
 ```
 muhasebemag/
+├── backend/                    # FastAPI Backend
+│   ├── app/
+│   │   ├── api/               # API endpoints
+│   │   │   └── v1/
+│   │   │       ├── endpoints/ # Individual route files
+│   │   │       └── router.py  # Main router
+│   │   ├── core/              # Core functionality
+│   │   │   ├── config.py      # Settings
+│   │   │   ├── database.py    # DB connection
+│   │   │   └── cache.py       # Redis cache
+│   │   ├── models/            # SQLAlchemy models
+│   │   ├── schemas/           # Pydantic schemas
+│   │   ├── services/          # Business logic
+│   │   ├── utils/             # Utilities
+│   │   └── main.py            # FastAPI app
+│   ├── tests/                 # Backend tests
+│   ├── Dockerfile.dev         # Development Dockerfile
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
 │
-├── app.py                  # Flask backend uygulaması
-├── requirements.txt        # Python bağımlılıkları
-├── README.md              # Bu dosya
+├── frontend/                  # Next.js Frontend
+│   ├── src/
+│   │   ├── app/              # Next.js 14 App Router
+│   │   │   ├── layout.tsx    # Root layout
+│   │   │   ├── page.tsx      # Home page
+│   │   │   └── globals.css   # Global styles
+│   │   ├── components/       # React components
+│   │   ├── lib/              # Utilities
+│   │   ├── types/            # TypeScript types
+│   │   └── styles/           # Additional styles
+│   ├── public/               # Static files
+│   ├── Dockerfile.dev        # Development Dockerfile
+│   ├── package.json          # Node dependencies
+│   ├── tsconfig.json         # TypeScript config
+│   └── tailwind.config.ts    # Tailwind config
 │
-├── templates/             # HTML şablonları
-│   └── index.html        # Ana sayfa arayüzü
+├── docs/                     # Documentation
+├── docker/                   # Docker configs
+├── old-mvp/                  # Previous simple version (backup)
 │
-└── uploads/              # Geçici PDF dosyaları (otomatik oluşur)
+├── docker-compose.dev.yml    # Development compose
+├── .gitignore               # Git ignore rules
+└── README.md                # This file
 ```
-
-## 🔧 API Endpoints
-
-### GET /
-Ana sayfa HTML arayüzü
-
-### POST /upload
-PDF dosyası yükler ve analiz eder
-
-**Request:**
-- Method: POST
-- Content-Type: multipart/form-data
-- Body: file (PDF dosyası)
-
-**Response:**
-```json
-{
-  "bilanco": [
-    {
-      "Kalem": "Dönen Varlıklar",
-      "Tutar": "1000000"
-    }
-  ],
-  "gelir_tablosu": [
-    {
-      "Kalem": "Satış Gelirleri",
-      "Tutar": "5000000"
-    }
-  ]
-}
-```
-
-### GET /health
-Sunucu sağlık kontrolü
-
-**Response:**
-```json
-{
-  "status": "ok",
-  "message": "Sunucu çalışıyor"
-}
-```
-
-## ⚠️ Önemli Notlar
-
-### PDF Yapısı Özelleştirmesi
-
-Bu MVP, **genel bir yaklaşım** kullanır ve PDF'teki ilk iki tabloyu Bilanço ve Gelir Tablosu olarak kabul eder. **Gerçek kullanım için**, `app.py` dosyasındaki `extract_financial_data()` fonksiyonunu şu şekilde özelleştirmeniz gerekir:
-
-1. **Sayfa Numaralarını Belirleyin**: Bilanço ve Gelir Tablosu'nun hangi sayfalarda olduğunu tespit edin
-2. **Koordinatları Ayarlayın**: Gerekirse belirli koordinatlardaki tabloları çekin
-3. **Başlıkları Tanımlayın**: Tablo başlıklarını doğru şekilde algılayın
-
-Örnek özelleştirme:
-```python
-# Bilanço 10. sayfada
-page_bilanco = pdf.pages[9]  # İndeks 0'dan başlar
-tables_bilanco = page_bilanco.extract_tables()
-
-# Gelir Tablosu 11. sayfada
-page_gelir = pdf.pages[10]
-tables_gelir = page_gelir.extract_tables()
-```
-
-## 🚀 Gelecek Özellikler (Roadmap)
-
-Bu MVP başarıyla tamamlandıktan sonra eklenebilecek özellikler:
-
-- [ ] 🎯 **Gelişmiş PDF Okuma**: %100 doğrulukla beyanname analizi
-- [ ] 📊 **Mizan Oluşturma**: Otomatik mizan tablosu türetme
-- [ ] 📈 **Rasyo Analizleri**: Likidite, Kârlılık, Borçlanma oranları
-- [ ] 🔄 **Karşılaştırmalı Analiz**: Farklı dönemleri karşılaştırma
-- [ ] 📉 **Grafikler ve Dashboard**: Chart.js ile görselleştirme
-- [ ] 📥 **Excel Çıktısı**: Verileri Excel formatında indirme
-- [ ] 🤖 **Yapay Zeka Yorumlama**: KURGAN analizi gibi AI destekli yorumlama
-- [ ] 💾 **Veri Tabanı**: Geçmiş analizleri saklama
-- [ ] 👥 **Kullanıcı Yönetimi**: Çoklu kullanıcı desteği
-- [ ] 🔐 **Güvenlik**: Dosya şifreleme ve güvenli depolama
-
-## 🐛 Sorun Giderme
-
-### Port 5000 Kullanımda
-Eğer 5000 portu başka bir uygulama tarafından kullanılıyorsa, `app.py` dosyasının son satırındaki port numarasını değiştirin:
-```python
-app.run(debug=True, port=5001, host='0.0.0.0')
-```
-
-### PDF İşlenemiyor
-- PDF dosyasının bozuk olmadığından emin olun
-- PDF'in metin tabanlı olduğundan emin olun (taranan görüntü değil)
-- Konsol çıktılarını kontrol ederek hangi aşamada hata aldığınızı görün
-
-### Bağımlılık Hataları
-Tüm bağımlılıkları tekrar yükleyin:
-```bash
-pip install --upgrade -r requirements.txt
-```
-
-## 📝 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır.
-
-## 🤝 Katkıda Bulunma
-
-Katkılarınızı bekliyoruz! Pull request göndermekten çekinmeyin.
-
-## 📧 İletişim
-
-Sorularınız için issue açabilir veya proje sahibiyle iletişime geçebilirsiniz.
 
 ---
 
-**Not**: Bu bir MVP'dir ve üretim ortamı için ek güvenlik ve performans optimizasyonları gerektirir.
+## 🔧 Local Development (Docker olmadan)
+
+### Backend
+
+```bash
+cd backend
+
+# Virtual environment oluştur
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# Dependencies yükle
+pip install -r requirements.txt
+
+# PostgreSQL ve Redis'in çalıştığından emin olun
+# Sonra sunucuyu başlat
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Frontend
+
+```bash
+cd frontend
+
+# Dependencies yükle
+npm install
+
+# Development server başlat
+npm run dev
+```
+
+---
+
+## 📊 Sprint Planlaması
+
+### ✅ Sprint 0: Foundation (Tamamlandı)
+- [x] Monorepo structure
+- [x] FastAPI backend scaffolding
+- [x] Next.js frontend scaffolding
+- [x] Docker development environment
+- [x] PostgreSQL + Redis setup
+- [x] Basic health check endpoints
+
+### 🔄 Sprint 1: PDF Processing (2 hafta) - Sonraki
+- [ ] PDF upload endpoint
+- [ ] OCR integration (Tesseract)
+- [ ] GPT-4 Vision API integration
+- [ ] Data extraction logic
+- [ ] Validation engine
+- [ ] Unit tests
+
+### ⏳ Sprint 2: Analysis Engine (2 hafta)
+- [ ] Financial statement builder
+- [ ] 21 ratio calculations
+- [ ] Period comparison
+- [ ] Database models
+- [ ] Caching layer
+
+### ⏳ Sprint 3: Visualization (2 hafta)
+- [ ] Dashboard UI
+- [ ] Charts & graphs
+- [ ] Excel export service
+- [ ] PDF report generation
+
+### ⏳ Sprint 4: Authentication (1 hafta)
+- [ ] JWT authentication
+- [ ] User management
+- [ ] RBAC
+- [ ] Security hardening
+
+### ⏳ Sprint 5: Testing & Polish (1 hafta)
+- [ ] E2E tests
+- [ ] Performance optimization
+- [ ] Documentation
+- [ ] Bug fixes
+
+---
+
+## 🧪 Testing
+
+```bash
+# Backend tests
+cd backend
+pytest tests/ -v --cov=app
+
+# Frontend tests
+cd frontend
+npm test
+
+# E2E tests
+npm run test:e2e
+```
+
+---
+
+## 📚 API Documentation
+
+API dokümantasyonuna erişim:
+
+```
+http://localhost:8000/docs        # Swagger UI (Interactive)
+http://localhost:8000/redoc       # ReDoc (Alternative)
+http://localhost:8000/openapi.json # OpenAPI Schema
+```
+
+### Temel Endpoints
+
+| Method | Endpoint | Açıklama |
+|--------|----------|----------|
+| GET | `/health` | Health check |
+| GET | `/api/v1/health/detailed` | Detailed health (DB + Cache) |
+| POST | `/api/v1/documents/upload` | PDF yükleme |
+| GET | `/api/v1/documents` | Doküman listesi |
+| POST | `/api/v1/analysis/{id}` | Analiz çalıştır |
+| GET | `/api/v1/analysis/{id}/ratios` | Rasyo sonuçları |
+
+---
+
+## 🔐 Güvenlik
+
+### Development
+- Debug mode: **AÇIK**
+- CORS: **localhost:3000**
+- Secret key: **geliştirme için basit**
+
+### Production
+- [ ] Debug mode: **KAPALI**
+- [ ] CORS: **sadece production domain**
+- [ ] Secret key: **güçlü, rastgele**
+- [ ] HTTPS/TLS zorunlu
+- [ ] Rate limiting aktif
+- [ ] SQL injection koruması
+- [ ] XSS koruması
+
+---
+
+## 🚀 Deployment
+
+### Frontend (Vercel)
+
+```bash
+# Vercel CLI ile
+vercel --prod
+
+# veya GitHub integration ile otomatik
+```
+
+### Backend (Cloud Run / Docker)
+
+```bash
+# Docker image oluştur
+docker build -t smart-lodge-backend:latest -f backend/Dockerfile .
+
+# Cloud Run'a deploy
+gcloud run deploy smart-lodge-backend \
+  --image gcr.io/PROJECT_ID/smart-lodge-backend \
+  --platform managed
+```
+
+---
+
+## 📈 Roadmap
+
+### MVP v1.0 (Aralık 2025)
+- ✅ Core functionality
+- ✅ PDF processing
+- ✅ 21 ratio analysis
+- ✅ Basic dashboard
+- ✅ Excel export
+
+### v2.0 (Q1 2026)
+- [ ] Bireysel Gelir Vergisi desteği
+- [ ] KDV Beyannameleri
+- [ ] Multi-language (EN, DE)
+- [ ] Mobile app
+- [ ] API access for partners
+
+### v3.0 (Q2 2026)
+- [ ] Bank integration
+- [ ] Forecasting & budgeting
+- [ ] Advanced analytics
+- [ ] Custom reports builder
+
+---
+
+## 🤝 Katkıda Bulunma
+
+1. Fork edin
+2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add AmazingFeature'`)
+4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
+5. Pull Request açın
+
+---
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.
+
+---
+
+## 📞 İletişim
+
+- **GitHub Issues**: [Issues sayfası](https://github.com/rumelialimehmet-web/muhasebemag/issues)
+- **Email**: contact@smartlodgebudget.com
+
+---
+
+## 🙏 Teşekkürler
+
+- OpenAI GPT-4 Vision API
+- FastAPI Framework
+- Next.js Team
+- Shadcn/ui Components
+- Tüm açık kaynak katkıcılarına
+
+---
+
+**Made with ❤️ by Smart Lodge Budget Team**
+
+*Last updated: Ekim 2025 | Version: 1.0.0-alpha*

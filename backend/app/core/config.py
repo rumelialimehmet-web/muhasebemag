@@ -4,7 +4,7 @@ Loads from environment variables and .env file.
 """
 from typing import List, Optional
 from pydantic_settings import BaseSettings
-from pydantic import AnyHttpUrl, validator
+from pydantic import field_validator
 
 
 class Settings(BaseSettings):
@@ -46,26 +46,20 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = "/tmp/uploads"
 
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:3001"
-    ALLOWED_METHODS: str = "GET,POST,PUT,DELETE,OPTIONS"
-    ALLOWED_HEADERS: str = "*"
+    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:3001"]
+    ALLOWED_METHODS: List[str] = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    ALLOWED_HEADERS: List[str] = ["*"]
 
     # Rate Limiting
     RATE_LIMIT_REQUESTS: int = 1000
     RATE_LIMIT_PERIOD: int = 3600
 
-    @validator("ALLOWED_ORIGINS", pre=True)
-    def assemble_cors_origins(cls, v: str) -> List[str]:
+    @field_validator("ALLOWED_ORIGINS", "ALLOWED_METHODS", "ALLOWED_HEADERS", mode="before")
+    @classmethod
+    def parse_cors(cls, v):
         """Convert comma-separated string to list."""
         if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",")]
-        return v
-
-    @validator("ALLOWED_METHODS", pre=True)
-    def assemble_methods(cls, v: str) -> List[str]:
-        """Convert comma-separated string to list."""
-        if isinstance(v, str):
-            return [method.strip() for method in v.split(",")]
+            return [item.strip() for item in v.split(",")]
         return v
 
     class Config:

@@ -25,8 +25,8 @@ class Settings(BaseSettings):
     DATABASE_POOL_SIZE: int = 5
     DATABASE_MAX_OVERFLOW: int = 10
 
-    # Redis
-    REDIS_URL: str
+    # Redis (Optional - for caching)
+    REDIS_URL: Optional[str] = None
     REDIS_CACHE_TTL: int = 3600
 
     # Security

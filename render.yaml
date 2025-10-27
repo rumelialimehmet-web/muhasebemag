@@ -3,6 +3,7 @@ services:
   - type: web
     name: smart-lodge-backend
     env: python
+    pythonVersion: "3.11.9"  # Force Python 3.11.9 for Pillow compatibility
     region: singapore
     plan: free
     rootDirectory: backend

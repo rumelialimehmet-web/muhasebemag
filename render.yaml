@@ -1,0 +1,67 @@
+services:
+  # FastAPI Backend Web Service
+  - type: web
+    name: smart-lodge-backend
+    env: python
+    region: singapore
+    plan: free
+    rootDirectory: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: APP_NAME
+        value: Smart Lodge Budget
+      - key: APP_VERSION
+        value: 1.0.0
+      - key: DEBUG
+        value: false
+      - key: ENVIRONMENT
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: smart-lodge-db
+          property: connectionString
+      - key: REDIS_URL
+        sync: false
+      - key: REDIS_CACHE_TTL
+        value: 3600
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: 7
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-1.5-pro
+      - key: GEMINI_MAX_TOKENS
+        value: 8192
+      - key: MAX_UPLOAD_SIZE
+        value: 52428800
+      - key: ALLOWED_EXTENSIONS
+        value: .pdf
+      - key: UPLOAD_DIR
+        value: /tmp/uploads
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: ALLOWED_METHODS
+        value: GET,POST,PUT,DELETE,OPTIONS
+      - key: ALLOWED_HEADERS
+        value: "*"
+      - key: RATE_LIMIT_REQUESTS
+        value: 1000
+      - key: RATE_LIMIT_PERIOD
+        value: 3600
+
+databases:
+  # PostgreSQL Database (FREE 1GB)
+  - name: smart-lodge-db
+    databaseName: smart_lodge_budget
+    plan: free
+    region: singapore

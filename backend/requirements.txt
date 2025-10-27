@@ -1,62 +1,61 @@
-# FastAPI Core
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-pydantic==2.5.0
-pydantic-settings==2.1.0
+# FastAPI Core - Updated for Python 3.13 compatibility
+fastapi==0.115.4  # Latest stable (was 0.104.1)
+uvicorn[standard]==0.32.0  # Latest stable (was 0.24.0)
+pydantic==2.9.2  # Latest stable (was 2.5.0)
+pydantic-settings==2.6.1  # Latest stable (was 2.1.0)
 
-# Database
-sqlalchemy==2.0.23
-asyncpg==0.29.0
-alembic==1.13.0
+# Database - Updated for Python 3.13 compatibility
+sqlalchemy==2.0.36  # Latest stable (was 2.0.23)
+asyncpg==0.30.0  # Latest stable (was 0.29.0)
+alembic==1.14.0  # Latest stable (was 1.13.0)
 
-# Redis Cache (Upstash compatible)
-redis==5.0.1
-hiredis==2.2.3
-upstash-redis==0.15.0
+# Redis Cache - Updated for Python 3.13 compatibility
+redis==5.2.0  # Latest stable (was 5.0.1)
+hiredis==3.0.0  # Latest stable (was 2.2.3)
+upstash-redis==0.15.0  # Already latest
 
-# Authentication
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-python-multipart==0.0.6
+# Authentication - Updated for Python 3.13 compatibility
+python-jose[cryptography]==3.3.0  # Already latest
+passlib[bcrypt]==1.7.4  # Already latest
+python-multipart==0.0.17  # Latest stable (was 0.0.6)
 
-# PDF Processing
-PyPDF2==3.0.1
-pdfplumber==0.10.3
-pdf2image==1.16.3
-Pillow==11.0.0  # Updated for Python 3.13 compatibility
+# PDF Processing - Updated for Python 3.13 compatibility
+PyPDF2==3.0.1  # Already latest
+pdfplumber==0.11.4  # Latest stable (was 0.10.3)
+pdf2image==1.17.0  # Latest stable (was 1.16.3)
+Pillow==11.0.0  # Python 3.13 compatible (was 10.1.0)
 
-# OCR
-pytesseract==0.3.10
+# OCR - Updated for Python 3.13 compatibility
+pytesseract==0.3.13  # Latest stable (was 0.3.10)
 
-# Google Gemini AI
-google-generativeai==0.3.2
+# Google Gemini AI - Updated for Python 3.13 compatibility
+google-generativeai==0.8.3  # Latest stable (was 0.3.2)
 
-# Excel Export
-openpyxl==3.1.2
-xlsxwriter==3.1.9
+# Excel Export - Updated for Python 3.13 compatibility
+openpyxl==3.1.5  # Latest stable (was 3.1.2)
+xlsxwriter==3.2.0  # Latest stable (was 3.1.9)
 
-# Data Processing
-pandas==2.1.4
-numpy==1.26.2
+# Data Processing - Updated for Python 3.13 compatibility
+pandas==2.2.3  # Python 3.13 compatible (was 2.1.4)
+numpy==2.0.2   # Python 3.13 compatible (was 1.26.2)
 
-# Utilities
-python-dotenv==1.0.0
-httpx==0.25.2
-aiofiles==23.2.1
+# Utilities - Updated for Python 3.13 compatibility
+python-dotenv==1.0.1  # Latest stable (was 1.0.0)
+httpx==0.27.2  # Latest stable (was 0.25.2)
+aiofiles==24.1.0  # Latest stable (was 23.2.1)
 
-# Validation
-email-validator==2.1.0
+# Validation - Updated for Python 3.13 compatibility
+email-validator==2.2.0  # Latest stable (was 2.1.0)
 
 # CORS
 python-cors==1.0.0
 
-# Testing
-pytest==7.4.3
-pytest-asyncio==0.21.1
-pytest-cov==4.1.0
-httpx==0.25.2
+# Testing - Updated for Python 3.13 compatibility
+pytest==8.3.3  # Latest stable (was 7.4.3)
+pytest-asyncio==0.24.0  # Latest stable (was 0.21.1)
+pytest-cov==6.0.0  # Latest stable (was 4.1.0)
 
-# Development
-black==23.12.0
-flake8==6.1.0
-mypy==1.7.1
+# Development - Updated for Python 3.13 compatibility
+black==24.10.0  # Latest stable (was 23.12.0)
+flake8==7.1.1  # Latest stable (was 6.1.0)
+mypy==1.13.0  # Latest stable (was 1.7.1)

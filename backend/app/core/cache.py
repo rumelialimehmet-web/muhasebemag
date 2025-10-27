@@ -15,12 +15,22 @@ class RedisCache:
 
     async def connect(self):
         """Connect to Redis."""
-        self.redis_client = await redis.from_url(
-            settings.REDIS_URL,
-            encoding="utf-8",
-            decode_responses=True,
-        )
-        print(f"✅ Redis connected: {settings.REDIS_URL}")
+        if not settings.REDIS_URL:
+            print("⚠️  Redis URL not configured - caching disabled")
+            self.redis_client = None
+            return
+
+        try:
+            self.redis_client = await redis.from_url(
+                settings.REDIS_URL,
+                encoding="utf-8",
+                decode_responses=True,
+            )
+            print(f"✅ Redis connected: {settings.REDIS_URL[:20]}...")
+        except Exception as e:
+            print(f"⚠️  Redis connection failed: {e}")
+            print("⚠️  Continuing without cache...")
+            self.redis_client = None
 
     async def disconnect(self):
         """Disconnect from Redis."""

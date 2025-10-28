@@ -2,7 +2,7 @@
 Application configuration using Pydantic Settings.
 Loads from environment variables and .env file.
 """
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic_settings import BaseSettings
 from pydantic import field_validator
 
@@ -46,9 +46,9 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = "/tmp/uploads"
 
     # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:3001"]
-    ALLOWED_METHODS: List[str] = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-    ALLOWED_HEADERS: List[str] = ["*"]
+    ALLOWED_ORIGINS: Union[str, List[str]] = "http://localhost:3000,http://localhost:3001"
+    ALLOWED_METHODS: Union[str, List[str]] = "GET,POST,PUT,DELETE,OPTIONS"
+    ALLOWED_HEADERS: Union[str, List[str]] = "*"
 
     # Rate Limiting
     RATE_LIMIT_REQUESTS: int = 1000
@@ -59,8 +59,10 @@ class Settings(BaseSettings):
     def parse_cors(cls, v):
         """Convert comma-separated string to list."""
         if isinstance(v, str):
-            return [item.strip() for item in v.split(",")]
-        return v
+            return [item.strip() for item in v.split(",") if item.strip()]
+        elif isinstance(v, list):
+            return v
+        return [str(v)]
 
     class Config:
         env_file = ".env"
